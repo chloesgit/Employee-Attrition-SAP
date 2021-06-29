@@ -1,0 +1,4 @@
+service {
+	"attrition.employees.data::employees"
+	  as "employees";
+}

@@ -1,0 +1,66 @@
+ID: attrition
+_schema-version: '2.1'
+version: 0.0.1
+modules:
+  - name: employees
+    type: hdb
+    path: employees
+    requires:
+      - name: hdi_employees
+  - name: employee_app
+    type: nodejs
+    path: employee_app
+    provides:
+      - name: employee_app_api
+        properties:
+          url: '${default-url}'
+    requires:
+      - name: hdi_employees
+      - name: employees
+      - name: employee_app_api
+  - name: fiori_app
+    type: html5
+    path: fiori_app
+    requires:
+      - name: employee_app_api
+        group: destinations
+        properties:
+          name: xsodata
+          url: '~{url}'
+      - name: hdi_employees
+      - name: employee_app
+      - name: employees
+      - name: hdi_employees
+  - name: test
+    type: html5
+    path: test
+    requires:
+      - name: employee_app_api
+        group: destinations
+        properties:
+          name: xsodata
+          url: '~{url}'
+      - name: hdi_employees
+      - name: employee_app
+  - name: employee_attrition
+    type: html5
+    path: employee_attrition
+
+  - name: fiori_names
+    type: html5
+    path: fiori_names
+    requires:
+     - name: employee_app_api
+       group: destinations
+       properties:
+          name: xsodata
+          url: ~{url}
+
+resources:
+  - name: hdi_employees
+    parameters:
+      config:
+        schema: employees
+    properties:
+      hdi-container-name: '${service-name}'
+    type: com.sap.xs.hdi-container
