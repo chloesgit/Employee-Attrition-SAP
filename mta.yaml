@@ -18,33 +18,9 @@ modules:
       - name: hdi_employees
       - name: employees
       - name: employee_app_api
-  - name: fiori_app
-    type: html5
-    path: fiori_app
-    requires:
-      - name: employee_app_api
-        group: destinations
-        properties:
-          name: xsodata
-          url: '~{url}'
-      - name: hdi_employees
-      - name: employee_app
-      - name: employees
-      - name: hdi_employees
-  - name: test
-    type: html5
-    path: test
-    requires:
-      - name: employee_app_api
-        group: destinations
-        properties:
-          name: xsodata
-          url: '~{url}'
-      - name: hdi_employees
-      - name: employee_app
-  - name: employee_attrition
-    type: html5
-    path: employee_attrition
+  
+  
+  
 
   - name: fiori_names
     type: html5

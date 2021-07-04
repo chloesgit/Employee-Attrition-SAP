@@ -24,11 +24,11 @@ sap.ui.define([
 					sKey,
 					sText;
 
-					if (iPrice <= 20) {
-						sKey = "LE20";
+					if (iPrice === 0) {
+						sKey = "EQ0";
 						sText = oResourceBundle.getText("masterGroup1Header1");
 					} else {
-						sKey = "GT20";
+						sKey = "EQ1";
 						sText = oResourceBundle.getText("masterGroup1Header2");
 					}
 

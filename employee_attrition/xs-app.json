@@ -1,5 +1,0 @@
-{
-  "welcomeFile": "index.html",
-  "authenticationMethod": "none",
-  "routes": [{ "source": "/here/goes/your/serviceurl/", "destination": "" }]
-}
