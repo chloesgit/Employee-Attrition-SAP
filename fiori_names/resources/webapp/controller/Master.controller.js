@@ -177,10 +177,10 @@ sap.ui.define([
 				aFilterItems.forEach(function (oItem) {
 					switch (oItem.getKey()) {
 						case "Filter1" :
-							aFilters.push(new Filter("Attrition", FilterOperator.LE, 100));
+							aFilters.push(new Filter("Attrition", FilterOperator.EQ, 0));
 							break;
 						case "Filter2" :
-							aFilters.push(new Filter("Attrition", FilterOperator.GT, 100));
+							aFilters.push(new Filter("Attrition", FilterOperator.EQ, 1));
 							break;
 						default :
 							break;
