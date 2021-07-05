@@ -73,7 +73,7 @@ sap.ui.define([
 			// Action
 			When.onTheMasterPage.iOpenViewSettingsDialog().
 				and.iSelectListItemInViewSettingsDialog("Attrition").
-				and.iSelectListItemInViewSettingsDialog("<100 MonthlyIncome").
+				and.iSelectListItemInViewSettingsDialog("Attrition Unlikely").
 				and.iPressOKInViewSelectionDialog();
 
 			// Assertion
@@ -83,7 +83,7 @@ sap.ui.define([
 		opaTest("MasterList Filtering on Attrition more than 100", function(Given, When, Then) {
 			// Action
 			When.onTheMasterPage.iOpenViewSettingsDialog().
-				and.iSelectListItemInViewSettingsDialog(">100 MonthlyIncome").
+				and.iSelectListItemInViewSettingsDialog("Attrition Likely").
 				and.iPressOKInViewSelectionDialog();
 
 			// Assertion
