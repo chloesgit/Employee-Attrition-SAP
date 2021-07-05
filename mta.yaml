@@ -53,6 +53,9 @@ modules:
           name: xsodata
           url: ~{url}
 
+
+  
+
 resources:
   - name: hdi_employees
     parameters:
@@ -61,3 +64,12 @@ resources:
     properties:
       hdi-container-name: '${service-name}'
     type: com.sap.xs.hdi-container
+
+  - name: hdi_employee
+    parameters:
+       config:
+          schema: employees
+    properties:
+       hdi-container-name_2: ${service-name}
+    type: com.sap.xs.hdi-container
+
