@@ -1,7 +1,7 @@
 {
 	"format_version": 1,
 	"imports": [{
-		"target_table": "attrition.employees.data::employees_names",
+		"target_table": "attrition.employees.data::employees_analysis",
 		"source_data": {
 			"data_type": "CSV",
 			"file_name": "attrition.employees.data::employees_analyzed.csv",

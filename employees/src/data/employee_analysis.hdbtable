@@ -1,4 +1,4 @@
-COLUMN TABLE "attrition.employees.data::employees_names"
+COLUMN TABLE "attrition.employees.data::employees_analysis"
 (
 	"EmployeeID" INTEGER CS_INT,
 	"GivenName" VARCHAR(50),
