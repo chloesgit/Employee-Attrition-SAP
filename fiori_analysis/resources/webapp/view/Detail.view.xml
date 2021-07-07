@@ -1,85 +1,143 @@
 <mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" controllerName="employeesdashboard.controller.Detail">
-	<semantic:DetailPage id="page" navButtonPress="onNavBack" showNavButton="{device>/system/phone}" title="{i18n>detailTitle}" busy="{detailView>/busy}" busyIndicatorDelay="{detailView>/delay}">
+	<semantic:DetailPage id="page" navButtonPress="onNavBack" showNavButton="{device>/system/phone}" title="{i18n>detailTitle}"
+		busy="{detailView>/busy}" busyIndicatorDelay="{detailView>/delay}">
 		<semantic:content>
-			<ObjectHeader id="objectHeader" title="{GivenName} {MiddleInitial}. {Surname}" number="{= ${Attrition} === 1 ? 'Likely' : 'Unlikely'}" numberUnit="Attrition Candidate" numberState="{= ${Attrition} === 1 ? 'Error' : 'Success'}" backgroundDesign="Solid" icon="http://randomuser.me/api/portraits/{= ${Gender} === 'Male' ? 'men' : 'women'}/{= ${EmployeeID} % 100}.jpg" intro="EmployeeID {EmployeeID}"/>
+			<MessageStrip text="{GivenName} is {= ${Attrition} === 1 ? 'a likely' : 'an unlikely'} attrition candidate." type="Warning" showIcon="true"
+				showCloseButton="true" class="sapUiMediumMarginBottom" visible="{= ${Attrition} === 1}"></MessageStrip>
+			<ObjectHeader id="objectHeader" title="{GivenName} {MiddleInitial}. {Surname}" number="{= ${Attrition} === 1 ? 'Likely' : 'Unlikely'}"
+				numberUnit="Attrition Candidate" numberState="{= ${Attrition} === 1 ? 'Error' : 'Success'}" backgroundDesign="Solid"
+				icon="http://randomuser.me/api/portraits/{= ${Gender} === 'Male' ? 'men' : 'women'}/{= ${EmployeeID} % 100}.jpg"
+				intro="EmployeeID {EmployeeID}"/>
 			<IconTabBar id="iconTabBar" class="sapUiResponsiveContentPadding">
 				<items>
-					<IconTabFilter id="iconTabBarFilter1" icon="sap-icon://hint" tooltip="{i18n>detailIconTabBarInfo}"/>
-					<IconTabFilter id="iconTabBarFilter2" icon="sap-icon://attachment" tooltip="{i18n>detailIconTabBarAttachments}"/>
+					<IconTabFilter id="iconTabBarFilter1" icon="sap-icon://person-placeholder" tooltip="Employee Info">
+						<content>
+							<Table noDataText="Drop column list items here and columns in the area above" id="table0">
+								<columns>
+									<Column id="column0">
+										<header>
+											<Label text="Attribute" id="label0"/>
+										</header>
+									</Column>
+									<Column id="column1">
+										<header>
+											<Label text="Value" id="label1"/>
+										</header>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem type="Active" id="item2">
+										<cells>
+											<Text text="Age" id="text81"/>
+											<Text text="{Age}" id="text82"/>
+										</cells>
+									</ColumnListItem>
+									<ColumnListItem xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" type="Active" id="item2_copy2">
+										<cells>
+											<Text text="Business Travel" id="text81_copy2"/>
+											<Text text="{BusinessTravel}" id="text82_copy2"/>
+										</cells>
+									</ColumnListItem>
+									<ColumnListItem xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" type="Active" id="item2_copy">
+										<cells>
+											<Text id="text81_copy" text="Department"/>
+											<Text text="{Department}" id="text82_copy"/>
+										</cells>
+									</ColumnListItem>
+									<ColumnListItem xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" type="Active" id="item2_copy3">
+										<cells>
+											<Text text="Distance from Home" id="text81_copy3"/>
+											<Text text="{DistanceFromHome} km" id="text82_copy3"/>
+										</cells>
+									</ColumnListItem>
+									<ColumnListItem xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" type="Active" id="item2_copy4">
+										<cells>
+											<Text text="Education" id="text81_copy4"/>
+											<Text text="{Education}" id="text82_copy4"/>
+										</cells>
+									</ColumnListItem>
+									<ColumnListItem xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" type="Active" id="item2_copy5">
+										<cells>
+											<Text text="Education Field" id="text81_copy5"/>
+											<Text text="{EducationField}" id="text82_copy5"/>
+										</cells>
+									</ColumnListItem>
+									<ColumnListItem xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" type="Active" id="item2_copy6">
+										<cells>
+											<Text text="Gender" id="text81_copy6"/>
+											<Text text="{Gender}" id="text82_copy6"/>
+										</cells>
+									</ColumnListItem>
+									<ColumnListItem xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" type="Active" id="item2_copy7">
+										<cells>
+											<Text text="Salary" id="text81_copy7"/>
+											<Text text="${MonthlyIncome} (+{PercentSalaryHike}%)" id="text82_copy7"/>
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</content>
+					</IconTabFilter>
+					<IconTabFilter id="iconTabBarFilter2" icon="sap-icon://hint" tooltip="Suggestions">
+						<content>
+							<VBox width="100%" direction="Row">
+								<items>
+									<StandardTile icon="sap-icon://home" title="Home Office" info="{= ${Remotework} === 0 ? 'NOT ' : ''} effective"
+										infoState="{= ${Remotework} === 1 ? 'Success' : 'Error'}"/>
+									<StandardTile icon="sap-icon://step" title="Job Promotion" info="{= ${NewPromotion} === 0 ? 'NOT ' : ''} effective"
+										infoState="{= ${NewPromotion} === 1 ? 'Success' : 'Error'}"/>
+									<StandardTile icon="sap-icon://loan" title="Salary Increase" number="5" numberUnit="%"
+										info="{= ${5PrctSalaryIncrease} === 0 ? 'NOT ' : ''} effective" infoState="{= ${5PrctSalaryIncrease} === 1 ? 'Success' : 'Error'}"/>
+									<StandardTile icon="sap-icon://loan" title="Salary Increase" number="10" numberUnit="%"
+										info="{= ${10PrctSalaryIncrease} === 0 ? 'NOT ' : ''} effective" infoState="{= ${10PrctSalaryIncrease} === 1 ? 'Success' : 'Error'}"/>
+									<StandardTile icon="sap-icon://loan" title="Salary Increase" number="20" numberUnit="%"
+										info="{= ${20PrctSalaryIncrease} === 0 ? 'NOT ' : ''} effective" infoState="{= ${20PrctSalaryIncrease} === 1 ? 'Success' : 'Error'}"/>
+								</items>
+							</VBox>
+							<VBox width="100%" direction="Column" id="vbox0">
+								<items>
+									<Text xmlns="sap.m" text="{GivenName} is {= ${Attrition} === 1 ? 'a likely' : 'an unlikely'} attrition candidate." id="text10"/>
+									<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Country-Specific Profit Margin" press="onPress"
+										frameType="OneByHalf" subheader="Subtitle">
+										<TileContent>
+											<ImageContent src="test-resources/sap/m/demokit/sample/GenericTileAsLaunchTile/images/SAPLogoLargeTile_28px_height.png"/>
+										</TileContent>
+									</GenericTile>
+									<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="{Age} years old" subheader="Age-related suggestions"
+										press="press">
+										<TileContent unit="EUR" footer="Current Quarter">
+											<ImageContent src="sap-icon://hint"/>
+											<Text text="the most important predictors in this age category are {RegardingAgeCrit1} and {RegardingAgeCrit2}"/>
+										</TileContent>
+									</GenericTile>
+								</items>
+							</VBox>
+							<VBox width="100%" direction="Row" id="vbox1">
+								<items>
+									<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Country-Specific Profit Margin" press="onPress"
+										frameType="OneByOne" subheader="Subtitle">
+										<TileContent>
+											<ImageContent src="test-resources/sap/m/demokit/sample/GenericTileAsLaunchTile/images/SAPLogoLargeTile_28px_height.png"/>
+										</TileContent>
+									</GenericTile>
+									<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="{Age} years old" subheader="Age-related suggestions"
+										press="press">
+										<TileContent unit="EUR" footer="Current Quarter">
+											<ImageContent src="sap-icon://hint"/>
+											<Text text="the most important predictors in this age category are {RegardingAgeCrit1} and {RegardingAgeCrit2}"/>
+										</TileContent>
+									</GenericTile>
+									<GenericTile header="{YearsAtCompany} years at CleverTech">
+										<TileContent>
+											<Text
+												text="The most important predictors for people that have been working at the company for this long are {RegardingYearsAtCompanyCrit1} and {RegardingYearsAtCompanyCrit2}"/>
+										</TileContent>
+									</GenericTile>
+								</items>
+							</VBox>
+						</content>
+					</IconTabFilter>
 				</items>
-				<content>
-					<Table noDataText="Drop column list items here and columns in the area above" id="table0">
-						<columns>
-							<Column id="column0">
-								<header>
-									<Label text="Attribute" id="label0"/>
-								</header>
-							</Column>
-							<Column id="column1">
-								<header>
-									<Label text="Value" id="label1"/>
-								</header>
-							</Column>
-						</columns>
-						<items>
-							<ColumnListItem type="Active" id="item2">
-								<cells>
-									<Text text="Age" id="text81"/>
-									<Text text="{Age}" id="text82"/>
-								</cells>
-							</ColumnListItem>
-							<ColumnListItem xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" type="Active" id="item2_copy2">
-								<cells>
-									<Text text="Business Travel" id="text81_copy2"/>
-									<Text text="{BusinessTravel}" id="text82_copy2"/>
-								</cells>
-							</ColumnListItem>
-							<ColumnListItem xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" type="Active" id="item2_copy">
-								<cells>
-									<Text id="text81_copy" text="Department"/>
-									<Text text="{Department}" id="text82_copy"/>
-								</cells>
-							</ColumnListItem>
-							<ColumnListItem xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" type="Active" id="item2_copy3">
-								<cells>
-									<Text text="Distance from Home" id="text81_copy3"/>
-									<Text text="{DistanceFromHome} km" id="text82_copy3"/>
-								</cells>
-							</ColumnListItem>
-							<ColumnListItem xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" type="Active" id="item2_copy4">
-								<cells>
-									<Text text="Education" id="text81_copy4"/>
-									<Text text="{Education}" id="text82_copy4"/>
-								</cells>
-							</ColumnListItem>
-							<ColumnListItem xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" type="Active" id="item2_copy5">
-								<cells>
-									<Text text="Education Field" id="text81_copy5"/>
-									<Text text="{EducationField}" id="text82_copy5"/>
-								</cells>
-							</ColumnListItem>
-							<ColumnListItem xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" type="Active" id="item2_copy6">
-								<cells>
-									<Text text="Gender" id="text81_copy6"/>
-									<Text text="{Gender}" id="text82_copy6"/>
-								</cells>
-							</ColumnListItem>
-							<ColumnListItem xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" type="Active" id="item2_copy7">
-							    <cells>
-							        <Text text="Salary" id="text81_copy7"/>
-							        <Text text="${MonthlyIncome} (+{PercentSalaryHike}%)" id="text82_copy7"/>
-							        </cells>
-							    
-							</ColumnListItem>
-						</items>
-					</Table>
-					<VBox width="100%" direction="Column" id="vbox0">
-					    <items>
-					        <sap.ui.core:Icon src="sap-icon://hint" size="2em" xmlns:sap.ui.core="sap.ui.core" id="icon0"/>
-					        <Text xmlns="sap.m" text="{GivenName} is {= ${Attrition} === 1 ? 'a likely' : 'an unlikely'} attrition candidate.&#10;&#10;Suggestion:&#10;The best attrition-predictor for {Gender} employees{= ${Age} &lt; 30 ? ' younger than 30' : ''}{= ${Age} &gt; 45 ? ' above the age of 45' : ''} is their monthly salary." id="text10"/>
-					    </items>
-					</VBox>
-				</content>
 			</IconTabBar>
 		</semantic:content>
 		<semantic:sendEmailAction>
