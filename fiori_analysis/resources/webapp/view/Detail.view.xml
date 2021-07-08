@@ -3,7 +3,7 @@
 		busy="{detailView>/busy}" busyIndicatorDelay="{detailView>/delay}">
 		<semantic:content>
 			<MessageStrip text="{GivenName} is {= ${Attrition} === 1 ? 'a likely' : 'an unlikely'} attrition candidate." type="Warning" showIcon="true"
-				showCloseButton="true" class="sapUiMediumMarginBottom" visible="{= ${Attrition} === 1}"></MessageStrip>
+				showCloseButton="true" class="sapUiMediumMarginBottom" visible="{= ${Attrition} === 1}"/>
 			<ObjectHeader id="objectHeader" title="{GivenName} {MiddleInitial}. {Surname}" number="{= ${Attrition} === 1 ? 'Likely' : 'Unlikely'}"
 				numberUnit="Attrition Candidate" numberState="{= ${Attrition} === 1 ? 'Error' : 'Success'}" backgroundDesign="Solid"
 				icon="http://randomuser.me/api/portraits/{= ${Gender} === 'Male' ? 'men' : 'women'}/{= ${EmployeeID} % 100}.jpg"
@@ -12,7 +12,82 @@
 				<items>
 					<IconTabFilter id="iconTabBarFilter1" icon="sap-icon://person-placeholder" tooltip="Employee Info">
 						<content>
-							<Table noDataText="Drop column list items here and columns in the area above" id="table0">
+							<VBox width="100%" direction="Column">
+								<items>
+									<Label text="Important Attributes:" width="100%" design="Bold"/>
+								</items>
+							</VBox>
+							<VBox width="100%" direction="Row">
+								<items>
+									<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="{Gender}" subheader="Gender" frameType="OneByHalf"/>
+									<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="${MonthlyIncome}" subheader="Salary" frameType="OneByHalf"/>
+									<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="{Department}" subheader="Department" frameType="OneByHalf"/>
+									<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="{Age} years" subheader="Age" frameType="OneByHalf"/>
+								</items>
+							</VBox>
+							<VBox class="sapUiTinyMarginTop" width="100%" direction="Column">
+								<items>
+									<Label text="Employee Survey Results:" width="100%" design="Bold"/>
+								</items>
+							</VBox>
+							<Table noDataText="Drop column list items here and columns in the area above">
+								<columns>
+									<Column>
+										<header>
+											<Label text="Attribute"/>
+										</header>
+									</Column>
+									<Column>
+										<header>
+											<Label text="Value"/>
+										</header>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" type="Active">
+										<cells>
+											<Text text="Environment Satisfaction ({EnvironmentSatisfaction})"/>
+											<!--hacky solution, should be cast to integer somewhere else-->
+											<Slider xmlns="sap.m"
+												value="{= ${EnvironmentSatisfaction} === '1' ? 1 : ${EnvironmentSatisfaction} === '2' ? 2 : ${EnvironmentSatisfaction} === '3' ? 3 : ${EnvironmentSatisfaction} === '4' ? 4 : 1}"
+												max="4" enableTickmarks="true" min="1"/>
+										</cells>
+									</ColumnListItem>
+									<ColumnListItem xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" type="Active">
+										<cells>
+											<Text text="Environment Satisfaction"/>
+											<!--hacky solution, should be cast to integer somewhere else-->
+											<Slider xmlns="sap.m"
+												value="{= ${EnvironmentSatisfaction} === '1' ? 1 : ${EnvironmentSatisfaction} === '2' ? 2 : ${EnvironmentSatisfaction} === '3' ? 3 : ${EnvironmentSatisfaction} === '4' ? 4 : 1}"
+												max="4" enableTickmarks="true" min="1"/>
+										</cells>
+									</ColumnListItem>
+									<ColumnListItem xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" type="Active">
+										<cells>
+											<Text text="Job Satisfaction"/>
+											<!--hacky solution, should be cast to integer somewhere else-->
+											<Slider xmlns="sap.m"
+												value="{= ${JobSatisfaction} === '1' ? 1 : ${JobSatisfaction} === '2' ? 2 : ${JobSatisfaction} === '3' ? 3 : ${JobSatisfaction} === '4' ? 4 : 1}"
+												max="4" enableTickmarks="true" min="1"/>
+										</cells>
+									</ColumnListItem>
+									<ColumnListItem xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" type="Active">
+										<cells>
+											<Text text="Work-Life Balance"/>
+											<!--hacky solution, should be cast to integer somewhere else-->
+											<Slider xmlns="sap.m"
+												value="{= ${WorkLifeBalance} === '1' ? 1 : ${WorkLifeBalance} === '2' ? 2 : ${WorkLifeBalance} === '3' ? 3 : ${WorkLifeBalance} === '4' ? 4 : 1}"
+												max="4" enableTickmarks="true" min="1"/>
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+							<VBox class="sapUiTinyMarginTop" width="100%" direction="Column">
+								<items>
+									<Label text="Complete Employee Info:" width="100%" design="Bold"/>
+								</items>
+							</VBox>
+							<Table noDataText="Drop column list items here and columns in the area above">
 								<columns>
 									<Column id="column0">
 										<header>
@@ -68,10 +143,70 @@
 											<Text text="{Gender}" id="text82_copy6"/>
 										</cells>
 									</ColumnListItem>
-									<ColumnListItem xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" type="Active" id="item2_copy7">
+									<ColumnListItem xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" type="Active">
 										<cells>
-											<Text text="Salary" id="text81_copy7"/>
-											<Text text="${MonthlyIncome} (+{PercentSalaryHike}%)" id="text82_copy7"/>
+											<Text text="Job Level"/>
+											<Text text="{JobLevel}"/>
+										</cells>
+									</ColumnListItem>
+									<ColumnListItem xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" type="Active">
+										<cells>
+											<Text text="Job Role"/>
+											<Text text="{JobRole}"/>
+										</cells>
+									</ColumnListItem>
+									<ColumnListItem xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" type="Active">
+										<cells>
+											<Text text="Marital Status"/>
+											<Text text="{MaritalStatus}"/>
+										</cells>
+									</ColumnListItem>
+									<ColumnListItem xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" type="Active">
+										<cells>
+											<Text text="Number of Companies worked for"/>
+											<Text text="{NumCompaniesWorked}"/>
+										</cells>
+									</ColumnListItem>
+									<ColumnListItem>
+										<cells>
+											<Text text="Salary"/>
+											<Text text="${MonthlyIncome} (+{PercentSalaryHike}%)"/>
+										</cells>
+									</ColumnListItem>
+									<ColumnListItem xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" type="Active">
+										<cells>
+											<Text text="Stock Option Level"/>
+											<Text text="{StockOptionLevel}"/>
+										</cells>
+									</ColumnListItem>
+									<ColumnListItem xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" type="Active">
+										<cells>
+											<Text text="Total Working Years"/>
+											<Text text="{TotalWorkingYears}"/>
+										</cells>
+									</ColumnListItem>
+									<ColumnListItem xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" type="Active">
+										<cells>
+											<Text text="Training Times Last Year"/>
+											<Text text="{TrainingTimesLastYear}"/>
+										</cells>
+									</ColumnListItem>
+									<ColumnListItem xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" type="Active">
+										<cells>
+											<Text text="Years At Company"/>
+											<Text text="{YearsAtCompany}"/>
+										</cells>
+									</ColumnListItem>
+									<ColumnListItem xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" type="Active">
+										<cells>
+											<Text text="Years Since Last Promotion"/>
+											<Text text="{YearsSinceLastPromotion}"/>
+										</cells>
+									</ColumnListItem>
+									<ColumnListItem xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" type="Active">
+										<cells>
+											<Text text="Years With Current Manager"/>
+											<Text text="{YearsWithCurrManager}"/>
 										</cells>
 									</ColumnListItem>
 								</items>
@@ -80,22 +215,47 @@
 					</IconTabFilter>
 					<IconTabFilter id="iconTabBarFilter2" icon="sap-icon://hint" tooltip="Suggestions">
 						<content>
+							<VBox width="100%" direction="Column">
+								<items>
+									<Label text="Predicted effectiveness of potential mitigation measures:" width="100%" design="Bold"/>
+								</items>
+							</VBox>
 							<VBox width="100%" direction="Row">
 								<items>
-									<StandardTile icon="sap-icon://home" title="Home Office" info="{= ${Remotework} === 0 ? 'NOT ' : ''} effective"
+									<StandardTile icon="sap-icon://home" title="Home Office" info="{= ${Remotework} === 0 ? 'NOT ' : ''}effective"
 										infoState="{= ${Remotework} === 1 ? 'Success' : 'Error'}"/>
-									<StandardTile icon="sap-icon://step" title="Job Promotion" info="{= ${NewPromotion} === 0 ? 'NOT ' : ''} effective"
+									<StandardTile icon="sap-icon://step" title="Job Promotion" info="{= ${NewPromotion} === 0 ? 'NOT ' : ''}effective"
 										infoState="{= ${NewPromotion} === 1 ? 'Success' : 'Error'}"/>
+									<StandardTile icon="sap-icon://lead" title="Suggested Bonus Payment"
+										info="{= ${5PrctSalaryIncrease} + ${10PrctSalaryIncrease} + ${NewPromotion} === 0 ? 'NOT ' : 'possibly '}effective"
+										number="{= ${MonthlyIncome} * 0.02}" numberUnit="$"
+										infoState="{= ${5PrctSalaryIncrease} + ${10PrctSalaryIncrease} + ${NewPromotion} === 0 ? 'Error' : 'Warning'}"/>
+								</items>
+							</VBox>
+							<VBox width="100%" direction="Column">
+								<items>
+									<Label text="Predicted effectiveness of income raises:" width="100%" design="Bold"/>
+								</items>
+							</VBox>
+							<VBox width="100%" direction="Row">
+								<items>
 									<StandardTile icon="sap-icon://loan" title="Salary Increase" number="5" numberUnit="%"
-										info="{= ${5PrctSalaryIncrease} === 0 ? 'NOT ' : ''} effective" infoState="{= ${5PrctSalaryIncrease} === 1 ? 'Success' : 'Error'}"/>
+										info="{= ${5PrctSalaryIncrease} === 0 ? 'NOT ' : ''}effective" infoState="{= ${5PrctSalaryIncrease} === 1 ? 'Success' : 'Error'}"/>
 									<StandardTile icon="sap-icon://loan" title="Salary Increase" number="10" numberUnit="%"
-										info="{= ${10PrctSalaryIncrease} === 0 ? 'NOT ' : ''} effective" infoState="{= ${10PrctSalaryIncrease} === 1 ? 'Success' : 'Error'}"/>
+										info="{= ${10PrctSalaryIncrease} === 0 ? 'NOT ' : ''}effective" infoState="{= ${10PrctSalaryIncrease} === 1 ? 'Success' : 'Error'}"/>
 									<StandardTile icon="sap-icon://loan" title="Salary Increase" number="20" numberUnit="%"
-										info="{= ${20PrctSalaryIncrease} === 0 ? 'NOT ' : ''} effective" infoState="{= ${20PrctSalaryIncrease} === 1 ? 'Success' : 'Error'}"/>
+										info="{= ${20PrctSalaryIncrease} === 0 ? 'NOT ' : ''}effective" infoState="{= ${20PrctSalaryIncrease} === 1 ? 'Success' : 'Error'}"/>
 								</items>
 							</VBox>
 							<VBox width="100%" direction="Column" id="vbox0">
 								<items>
+									<TileContainer editable="true" allowAdd="true" id="container1">
+										<tiles>
+											<StandardTile title="Title 1" info="Info" icon="sap-icon://customer" activeIcon="sap-icon://customer" number="123" numberUnit="eur"
+												infoState="Success" id="tile15"/>
+											<StandardTile title="Title 2" info="Info" icon="sap-icon://customer" activeIcon="sap-icon://customer" number="123" numberUnit="eur"
+												infoState="Success" id="tile16"/></tiles>
+									</TileContainer>
 									<Text xmlns="sap.m" text="{GivenName} is {= ${Attrition} === 1 ? 'a likely' : 'an unlikely'} attrition candidate." id="text10"/>
 									<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Country-Specific Profit Margin" press="onPress"
 										frameType="OneByHalf" subheader="Subtitle">
@@ -114,6 +274,12 @@
 							</VBox>
 							<VBox width="100%" direction="Row" id="vbox1">
 								<items>
+									<CustomTile id="tile14">
+										<content>
+											<Image width="140px" height="140px" id="image0"/>
+										</content>
+									</CustomTile>
+									<GenericTile header="Header" subheader="Sub Header" id="tile13"/>
 									<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Country-Specific Profit Margin" press="onPress"
 										frameType="OneByOne" subheader="Subtitle">
 										<TileContent>
@@ -127,12 +293,26 @@
 											<Text text="the most important predictors in this age category are {RegardingAgeCrit1} and {RegardingAgeCrit2}"/>
 										</TileContent>
 									</GenericTile>
+									<StandardTile title="Title" info="Info" icon="sap-icon://customer" activeIcon="sap-icon://customer" number="123" numberUnit="eur"
+										infoState="Success" id="tile12"/>
 									<GenericTile header="{YearsAtCompany} years at CleverTech">
 										<TileContent>
 											<Text
 												text="The most important predictors for people that have been working at the company for this long are {RegardingYearsAtCompanyCrit1} and {RegardingYearsAtCompanyCrit2}"/>
 										</TileContent>
 									</GenericTile>
+								</items>
+							</VBox>
+							<VBox>
+								<items>
+									<TileContainer editable="true" allowAdd="true" id="container0">
+										<tiles>
+											<StandardTile title="Title 1" info="Info" icon="sap-icon://customer" activeIcon="sap-icon://customer" number="123" numberUnit="eur"
+												infoState="Success" id="tile10"/>
+											<StandardTile title="Title 2" info="Info" icon="sap-icon://customer" activeIcon="sap-icon://customer" number="123" numberUnit="eur"
+												infoState="Success" id="tile11"/>
+										</tiles>
+									</TileContainer>
 								</items>
 							</VBox>
 						</content>
