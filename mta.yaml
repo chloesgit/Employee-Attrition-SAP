@@ -42,20 +42,25 @@ modules:
           url: '~{url}'
       - name: employee_app
       - name: hdi_employees
-
   - name: fiori_analysis
     type: html5
     path: fiori_analysis
     requires:
-     - name: employee_app_api
-       group: destinations
-       properties:
+      - name: employee_app_api
+        group: destinations
+        properties:
           name: xsodata
-          url: ~{url}
-
-
-  
-
+          url: '~{url}'
+  - name: fiori_tutorial
+    type: html5
+    path: fiori_tutorial
+    requires:
+      - name: employee_app_api
+        group: destinations
+        properties:
+          name: xsodata
+          url: '~{url}'
+      - name: employee_app
 resources:
   - name: hdi_employees
     parameters:
@@ -64,12 +69,10 @@ resources:
     properties:
       hdi-container-name: '${service-name}'
     type: com.sap.xs.hdi-container
-
   - name: hdi_employee
     parameters:
-       config:
-          schema: employees
+      config:
+        schema: employees
     properties:
-       hdi-container-name_2: ${service-name}
+      hdi-container-name_2: '${service-name}'
     type: com.sap.xs.hdi-container
-

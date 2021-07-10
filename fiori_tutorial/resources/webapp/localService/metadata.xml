@@ -1,0 +1,54 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" Version="1.0">
+	<edmx:DataServices xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="2.0">
+		<Schema xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices"
+			xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://schemas.microsoft.com/ado/2008/09/edm"
+			Namespace="default">
+			<EntityType Name="employeesanalysisType">
+				<Key>
+					<PropertyRef Name="EmployeeID"/>
+				</Key>
+				<Property Name="EmployeeID" Type="Edm.Int32" Nullable="false"/>
+				<Property Name="GivenName" Type="Edm.String" MaxLength="50"/>
+				<Property Name="MiddleInitial" Type="Edm.String" MaxLength="1"/>
+				<Property Name="Surname" Type="Edm.String" MaxLength="50"/>
+				<Property Name="Age" Type="Edm.Int32"/>
+				<Property Name="BusinessTravel" Type="Edm.String" MaxLength="50"/>
+				<Property Name="Department" Type="Edm.String" MaxLength="80"/>
+				<Property Name="DistanceFromHome" Type="Edm.Int32"/>
+				<Property Name="Education" Type="Edm.Int32"/>
+				<Property Name="EducationField" Type="Edm.String" MaxLength="50"/>
+				<Property Name="Gender" Type="Edm.String" MaxLength="50"/>
+				<Property Name="JobLevel" Type="Edm.Int32"/>
+				<Property Name="JobRole" Type="Edm.String" MaxLength="80"/>
+				<Property Name="MaritalStatus" Type="Edm.String" MaxLength="80"/>
+				<Property Name="MonthlyIncome" Type="Edm.Int32"/>
+				<Property Name="NumCompaniesWorked" Type="Edm.Int32"/>
+				<Property Name="PercentSalaryHike" Type="Edm.Int32"/>
+				<Property Name="StockOptionLevel" Type="Edm.Int32"/>
+				<Property Name="TotalWorkingYears" Type="Edm.Double"/>
+				<Property Name="TrainingTimesLastYear" Type="Edm.Int32"/>
+				<Property Name="YearsAtCompany" Type="Edm.Int32"/>
+				<Property Name="YearsSinceLastPromotion" Type="Edm.Int32"/>
+				<Property Name="YearsWithCurrManager" Type="Edm.Int32"/>
+				<Property Name="EnvironmentSatisfaction" Type="Edm.Double"/>
+				<Property Name="JobSatisfaction" Type="Edm.Double"/>
+				<Property Name="WorkLifeBalance" Type="Edm.Double"/>
+				<Property Name="JobInvolvement" Type="Edm.Int32"/>
+				<Property Name="PerformanceRating" Type="Edm.Int32"/>
+				<Property Name="Attrition" Type="Edm.Int32"/>
+				<Property Name="Remotework" Type="Edm.Int32"/>
+				<Property Name="10PrctSalaryIncrease" Type="Edm.Int32"/>
+				<Property Name="20PrctSalaryIncrease" Type="Edm.Int32"/>
+				<Property Name="5PrctSalaryIncrease" Type="Edm.Int32"/>
+				<Property Name="NewPromotion" Type="Edm.Int32"/>
+				<Property Name="RegardingAgeCrit1" Type="Edm.String" MaxLength="100"/>
+				<Property Name="RegardingAgeCrit2" Type="Edm.String" MaxLength="100"/>
+				<Property Name="RegardingYearsAtCompanyCrit1" Type="Edm.String" MaxLength="100"/>
+				<Property Name="RegardingYearsAtCompanyCrit2" Type="Edm.String" MaxLength="100"/>
+			</EntityType>
+			<EntityContainer Name="v2" m:IsDefaultEntityContainer="true">
+				<EntitySet Name="employeesanalysis" EntityType="default.employeesanalysisType"/>
+			</EntityContainer>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

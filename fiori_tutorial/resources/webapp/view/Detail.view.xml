@@ -1,4 +1,4 @@
-<mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" controllerName="employeesdashboard.controller.Detail">
+<mvc:View controllerName="dashboard.controller.Detail" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic">
 	<semantic:DetailPage id="page" navButtonPress="onNavBack" showNavButton="{device>/system/phone}" title="{i18n>detailTitle}"
 		busy="{detailView>/busy}" busyIndicatorDelay="{detailView>/delay}">
 		<semantic:content>
@@ -236,74 +236,6 @@
 										info="{= ${10PrctSalaryIncrease} === 0 ? 'NOT ' : ''}effective" infoState="{= ${10PrctSalaryIncrease} === 1 ? 'Success' : 'Error'}"/>
 									<StandardTile icon="sap-icon://loan" title="Salary Increase" number="20" numberUnit="%"
 										info="{= ${20PrctSalaryIncrease} === 0 ? 'NOT ' : ''}effective" infoState="{= ${20PrctSalaryIncrease} === 1 ? 'Success' : 'Error'}"/>
-								</items>
-							</VBox>
-							<VBox width="100%" direction="Column" id="vbox0">
-								<items>
-									<TileContainer editable="true" allowAdd="true" id="container1">
-										<tiles>
-											<StandardTile title="Title 1" info="Info" icon="sap-icon://customer" activeIcon="sap-icon://customer" number="123" numberUnit="eur"
-												infoState="Success" id="tile15"/>
-											<StandardTile title="Title 2" info="Info" icon="sap-icon://customer" activeIcon="sap-icon://customer" number="123" numberUnit="eur"
-												infoState="Success" id="tile16"/></tiles>
-									</TileContainer>
-									<Text xmlns="sap.m" text="{GivenName} is {= ${Attrition} === 1 ? 'a likely' : 'an unlikely'} attrition candidate." id="text10"/>
-									<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Country-Specific Profit Margin" press="onPress"
-										frameType="OneByHalf" subheader="Subtitle">
-										<TileContent>
-											<ImageContent src="test-resources/sap/m/demokit/sample/GenericTileAsLaunchTile/images/SAPLogoLargeTile_28px_height.png"/>
-										</TileContent>
-									</GenericTile>
-									<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="{Age} years old" subheader="Age-related suggestions"
-										press="press">
-										<TileContent unit="EUR" footer="Current Quarter">
-											<ImageContent src="sap-icon://hint"/>
-											<Text text="the most important predictors in this age category are {RegardingAgeCrit1} and {RegardingAgeCrit2}"/>
-										</TileContent>
-									</GenericTile>
-								</items>
-							</VBox>
-							<VBox width="100%" direction="Row" id="vbox1">
-								<items>
-									<CustomTile id="tile14">
-										<content>
-											<Image width="140px" height="140px" id="image0"/>
-										</content>
-									</CustomTile>
-									<GenericTile header="Header" subheader="Sub Header" id="tile13"/>
-									<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Country-Specific Profit Margin" press="onPress"
-										frameType="OneByOne" subheader="Subtitle">
-										<TileContent>
-											<ImageContent src="test-resources/sap/m/demokit/sample/GenericTileAsLaunchTile/images/SAPLogoLargeTile_28px_height.png"/>
-										</TileContent>
-									</GenericTile>
-									<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="{Age} years old" subheader="Age-related suggestions"
-										press="press">
-										<TileContent unit="EUR" footer="Current Quarter">
-											<ImageContent src="sap-icon://hint"/>
-											<Text text="the most important predictors in this age category are {RegardingAgeCrit1} and {RegardingAgeCrit2}"/>
-										</TileContent>
-									</GenericTile>
-									<StandardTile title="Title" info="Info" icon="sap-icon://customer" activeIcon="sap-icon://customer" number="123" numberUnit="eur"
-										infoState="Success" id="tile12"/>
-									<GenericTile header="{YearsAtCompany} years at CleverTech">
-										<TileContent>
-											<Text
-												text="The most important predictors for people that have been working at the company for this long are {RegardingYearsAtCompanyCrit1} and {RegardingYearsAtCompanyCrit2}"/>
-										</TileContent>
-									</GenericTile>
-								</items>
-							</VBox>
-							<VBox>
-								<items>
-									<TileContainer editable="true" allowAdd="true" id="container0">
-										<tiles>
-											<StandardTile title="Title 1" info="Info" icon="sap-icon://customer" activeIcon="sap-icon://customer" number="123" numberUnit="eur"
-												infoState="Success" id="tile10"/>
-											<StandardTile title="Title 2" info="Info" icon="sap-icon://customer" activeIcon="sap-icon://customer" number="123" numberUnit="eur"
-												infoState="Success" id="tile11"/>
-										</tiles>
-									</TileContainer>
 								</items>
 							</VBox>
 						</content>

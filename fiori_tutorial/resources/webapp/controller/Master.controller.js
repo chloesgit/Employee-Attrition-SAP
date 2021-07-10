@@ -1,19 +1,18 @@
 /*global history */
 sap.ui.define([
-	"employeesdashboard/controller/BaseController",
+	"dashboard/controller/BaseController",
 	"sap/ui/model/json/JSONModel",
-	"sap/ui/core/routing/History",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
 	"sap/m/GroupHeaderListItem",
 	"sap/ui/Device",
-	"employeesdashboard/model/formatter",
-	"employeesdashboard/model/grouper",
-	"employeesdashboard/model/GroupSortState"
-], function (BaseController, JSONModel, History, Filter, FilterOperator, GroupHeaderListItem, Device, formatter, grouper, GroupSortState) {
+	"dashboard/model/formatter",
+	"dashboard/model/grouper",
+	"dashboard/model/GroupSortState"
+], function (BaseController, JSONModel, Filter, FilterOperator, GroupHeaderListItem, Device, formatter, grouper, GroupSortState) {
 	"use strict";
 
-	return BaseController.extend("employeesdashboard.controller.Master", {
+	return BaseController.extend("dashboard.controller.Master", {
 
 		formatter: formatter,
 
@@ -101,7 +100,7 @@ sap.ui.define([
 			var sQuery = oEvent.getParameter("query");
 
 			if (sQuery) {
-				this._oListFilterState.aSearch = [new Filter("GivenName", FilterOperator.Contains, sQuery)];
+				this._oListFilterState.aSearch = [new Filter("Surname", FilterOperator.Contains, sQuery)];
 			} else {
 				this._oListFilterState.aSearch = [];
 			}
@@ -151,7 +150,7 @@ sap.ui.define([
 		 */
 		onOpenViewSettings: function () {
 			if (!this._oViewSettingsDialog) {
-				this._oViewSettingsDialog = sap.ui.xmlfragment("employeesdashboard.view.ViewSettingsDialog", this);
+				this._oViewSettingsDialog = sap.ui.xmlfragment("dashboard.view.ViewSettingsDialog", this);
 				this.getView().addDependent(this._oViewSettingsDialog);
 				// forward compact/cozy style into Dialog
 				this._oViewSettingsDialog.addStyleClass(this.getOwnerComponent().getContentDensityClass());
@@ -230,23 +229,11 @@ sap.ui.define([
 
 		/**
 		 * Event handler for navigating back.
-		 * It there is a history entry or an previous app-to-app navigation we go one step back in the browser history
-		 * If not, it will navigate to the shell home
+		 * We navigate back in the browser historz
 		 * @public
 		 */
 		onNavBack: function () {
-			var sPreviousHash = History.getInstance().getPreviousHash(),
-				oCrossAppNavigator = sap.ushell.Container.getService("CrossApplicationNavigation");
-
-			if (sPreviousHash !== undefined || !oCrossAppNavigator.isInitialNavigation()) {
-				history.go(-1);
-			} else {
-				oCrossAppNavigator.toExternal({
-					target: {
-						shellHash: "#Shell-home"
-					}
-				});
-			}
+			history.go(-1);
 		},
 
 		/* =========================================================== */
@@ -260,7 +247,7 @@ sap.ui.define([
 				delay: 0,
 				title: this.getResourceBundle().getText("masterTitleCount", [0]),
 				noDataText: this.getResourceBundle().getText("masterListNoDataText"),
-				sortBy: "GivenName",
+				sortBy: "Surname",
 				groupBy: "None"
 			});
 		},
